@@ -1,8 +1,9 @@
 <template>
-  <div class="app full-height">
-    <h1>{{ message }}</h1>
+  <div id="app full-height">
+   <!-- <h1>{{ message }}</h1>
     <router-link :to="{ name: 'hello' }">Goto Hello</router-link>
-    <router-view></router-view>
+    <router-view></router-view> -->
+		<router-view></router-view>
   </div>
 </template>
 
@@ -10,14 +11,14 @@
 export default {
   data () {
     return {
-      message: 'Express + Vue boilerplate-Konata9'
+      // message: 'Express + Vue boilerplate-Konata9'
     }
   }
 }
 </script>
 
 <style>
-html {
+/* html {
   height: 100%;
 }
 
@@ -26,5 +27,5 @@ body {
   align-items: center;
   justify-content: center;
   height: 100%;
-}
+} */
 </style>

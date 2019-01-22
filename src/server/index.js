@@ -5,6 +5,12 @@ import logger from 'morgan'
 import bodyParser from 'body-parser'
 import webpack from 'webpack'
 
+import mongoose from 'mongoose'
+
+const catering = require('./router/catering');
+
+
+
 // 引入history模块
 import history from 'connect-history-api-fallback'
 
@@ -14,7 +20,26 @@ import webpackHotMiddleware from 'webpack-hot-middleware'
 
 import config from '../../build/webpack.dev.conf'
 
-const app = express()
+
+
+//mongodb配置
+/*global.dbHandle = require('./database/dbHandle');*/
+mongoose.connect('mongodb://localhost/53project');
+var db = mongoose.connection;
+db.on('error',console.error.bind(console,'connection error;'));
+db.once('open',function () {
+    console.log("Connected.");
+});
+db.on('disconnected',function () {
+    console.log('Disconnected');
+});
+
+//注意：在查询之前，向mongodb数据库中对应的表里面
+// 任意添加一条数据，否则，你查询出来的数据为空！！！
+
+
+
+const app = express();
 
 // 引入history模式让浏览器进行前端路由页面跳转
 app.use(history())
@@ -25,6 +50,8 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public')))
+
+
 
 const compiler = webpack(config)
 //webpack 中间件
@@ -39,6 +66,9 @@ app.use(express.static(path.join(__dirname, 'views')))
 app.get('/', function (req, res) {
   res.sendFile('./views/index.html')
 })
+
+//自定义路由
+app.use('/tradeListBar',catering);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

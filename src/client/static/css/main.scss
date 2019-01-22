@@ -1,0 +1,31 @@
+
+$main-color: #d80000;// 网站主题颜色
+$main-width: 1200px;//网站内容区域宽度
+$tex-color: #000000;//测试颜色
+
+body {
+	height: 10000px;
+}
+
+//移入放大样式开始
+.enlarge img {
+	transition: all 0.3s linear;
+	-webkit-transition: all 0.3s linear;
+}
+.enlarge:hover img {
+	transform: scale(1.1, 1.1);
+	-webkit-transform: scale(1.1, 1.1);
+}
+// 移入放大样式结束
+//向上偏移开始
+.upward {
+	transition: all 0.3s linear;
+	-webkit-transition: all 0.3s linear;
+}
+.upward:hover{
+	box-shadow: 5px 5px 5px #d4d4d4;
+	-webkit-box-shadow: 5px 5px 5px #d4d4d4;
+	transform: translateY(-5px);
+	-webkit-transform: translateY(-5px);
+}
+//向上偏移结束
